@@ -132,9 +132,18 @@ let deleteContact = () => {
         return addressBookArr.splice(index, 1);
     }
 }
+let searchByCity = () => {
+    let searchCity = prompt("Enter the city name ");
+    return addressBookArr.filter(contact => contact.city == searchCity);
+}
+
+let searchByState = () => {
+    let searchState = prompt("Enter the state name ");
+    return addressBookArr.filter(contact => contact.state == searchState);
+}
 let choice = 0;
 do {
-    console.log("Choose\n1. View Contacts\n2. Add Contact\n3. Edit Contact By name\n4. Delete Contact\n5. Exit");
+    console.log("Choose\n1. View Contacts\n2. Add Contact\n3. Edit Contact By name\n4. Delete Contact\n5. Search Contacts By City\n6. Search Contacts By State\n7. Exit");
     choice = prompt("Enter Your Choice ");
     switch (choice) {
     case "1": viewContacts();
@@ -145,9 +154,13 @@ do {
         break;
     case "4": deleteContact();
         break;
-    case "5": ;
-        break;    
+    case "5": searchByCity();
+        break;
+    case "6": searchByState();
+        break;
+    case "7": 
+        break;
     default: console.log("Invalid Choice !!");
     }
 
-} while (choice != 5)
+} while (choice != 7)
