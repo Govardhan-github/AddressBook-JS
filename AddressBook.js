@@ -1,5 +1,5 @@
 console.log("Welcome To The Address Book Program")
-class AddressBook {
+class Contact {
     constructor(...params) {
             this.firstName = params[0];
             this.lastName = params[1];
@@ -85,12 +85,16 @@ let getContact =()=>{
     let email = prompt("Enter Email ");
     let contactDetails =null;
 try{
- contactDetails =  new AddressBook(firstName, lastName, address, city, state, zip, phoneNumber, email);
+ contactDetails =  new Contact(firstName, lastName, address, city, state, zip, phoneNumber, email);
 }catch(e){
     console.error(e);
 }
 return contactDetails;
 };
+let countContacts = () => {
+    addressBookArr.reduce((total, contactDetails) => total + 1, 0);
+}
+
 let viewContacts = () => {
     addressBookArr.forEach(contact => console.log(contact.toString()));
 }
@@ -102,13 +106,16 @@ let editContact = () => {
     let frstName = prompt("Enter First Name : ");
     let lstName = prompt("Enter Lastt Name : ");
     let index = addressBookArr.findIndex(contact => contact.firstName == frstName && contact.lastName == lstName);
-    if (index == 0)
+    if (index == -1)
         console.log("Could not find the contact!!")
     else {
         addressBookArr[index] = getContact();
         console.log("Contact edited successfully!!");
     }
 }    
+let getindexByName = (frstName, lstName) => {
+    return addressBookArr.findIndex(contact => contact.firstName == frstName && contact.lastName == lstName);
+}
 let deleteContact = () => {
     let frstName = prompt("Enter First Name : ");
     let lstName = prompt("Enter Last Name : ");
@@ -131,9 +138,9 @@ do {
         break;
     case "3": editContact();
         break;
-    case "4": console.log(deleteContact());
+    case "4": deleteContact();
         break;
-    case "5":
+    case "5": ;
         break;    
     default: console.log("Invalid Choice !!");
     }
