@@ -1,11 +1,4 @@
 console.log("Welcome To The Address Book Program")
-//Validation Ofcontacts in address book
-//let nameRegex = RegExp("^[A-Z]{1}[a-z]{2,}$");
-// let addressRegex = RegExp("^[A-Za-z]{4,}$");
-// let cityStateRegex = RegExp("^[A-Za-z]{4,}$");
-// let zipRegex = RegExp("^[1-9]{1}[0-9]{2}[ ]?[0-9]{3}$");
-// let phoneNumberRegex = RegExp("^[1-9]{1}[0-9]{9}$");
-// let emailRegex = RegExp("^([a-z]+)([0-9])*([_+-.]{1}[a-z0-9]+)*(@)([a-z0-9]+)[.]([a-z]{2,})([.][a-z]{2}){0,1}$");
 class AddressBook {
     constructor(...params) {
             this.firstName = params[0];
@@ -74,16 +67,13 @@ class AddressBook {
         if(emailRegex.test(email))
         this._email=email;
         else throw "Invalid Emial "
-
-        
     }
-
     toString() {
         return "First Name : " + this.firstName + "\nLast Name : " + this.lastName + "\nAddress : " + this.address + "\nCity : " + this.city + "\nState : " + this.state + "\nZip : " + this.zip + "\nPhone Number : " + this.phoneNumber + "\nEmail : " + this.email;
     }
 }
 try{
-let addressBook = new AddressBook("govardhan", "Bajjuri", "Kodad", "Hyderabad", "Telangana", "508204", "9666110767", "gopi@gmail.com");
+let addressBook = new AddressBook("Govardhan", "Bajjuri", "Kodad", "Hyderabad", "Telangana", "508204", "9666110767", "gopi@gmail.com");
 console.log(addressBook.toString());
 }catch(e){
     console.error(e);
