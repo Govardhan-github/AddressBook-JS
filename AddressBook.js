@@ -98,10 +98,15 @@ let countContacts = () => {
 let viewContacts = () => {
     addressBookArr.forEach(contact => console.log(contact.toString()));
 }
-let addContact = (Contact) => {
-    addressBookArr.push(Contact);
-    console.log("Contact Added Successfully!!")
-}
+let addContact = (contact) => {
+    let index = getindexByName(contact.firstName, contact.lastName);
+    if (index == -1) {
+        addressBookArr.push(contact);
+        console.log("Contact Added Successfully!!");
+    }
+    else
+        console.log("Could not add contact as Name already exists!!");
+}       
 let editContact = () => {
     let frstName = prompt("Enter First Name : ");
     let lstName = prompt("Enter Lastt Name : ");
