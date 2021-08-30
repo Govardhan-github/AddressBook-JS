@@ -72,9 +72,39 @@ class AddressBook {
         return "First Name : " + this.firstName + "\nLast Name : " + this.lastName + "\nAddress : " + this.address + "\nCity : " + this.city + "\nState : " + this.state + "\nZip : " + this.zip + "\nPhone Number : " + this.phoneNumber + "\nEmail : " + this.email;
     }
 }
+const prompt = require('prompt-sync')();
+let addressBookArr = new Array();
+let getContact =()=>{
+    let firstName = prompt("Enter First Name ");
+    let lastName = prompt("Enter Last Name ");
+    let address = prompt("Enter Address ");
+    let city = prompt("Enter City ");
+    let state = prompt("Enter State ");
+    let zip = prompt("Enter Zip ");
+    let phoneNumber = prompt("Enter Phone Number ");
+    let email = prompt("Enter Email ");
+    let contactDetails =null;
 try{
-let addressBook = new AddressBook("Govardhan", "Bajjuri", "Kodad", "Hyderabad", "Telangana", "508204", "9666110767", "gopi@gmail.com");
-console.log(addressBook.toString());
+ contactDetails =  new AddressBook(firstName, lastName, address, city, state, zip, phoneNumber, email);
 }catch(e){
     console.error(e);
 }
+return contactDetails;
+};
+let addContact = (Contact) => {
+    addressBookArr.push(Contact);
+    console.log("Contact Added Successfully!!")
+}
+let choice = 0;
+do {
+    console.log("Choose\n1. Add Contact\n2. Exit");
+    choice = prompt("Enter Your Choice ");
+    switch (choice) {
+        case "1": addContact(getContact());
+            break;
+        case "2":
+            break;
+        default: console.log("Invalid Choice !!");
+    }
+
+} while (choice != 2)
