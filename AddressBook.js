@@ -161,11 +161,19 @@ let searchByCityState = (item) => {
     console.log("Number of contacts " + countContact(contactsByItemArr));
     contactsByItemArr.forEach(contact => console.log(contact.toString()))
 }
-let sortrByName =() =>{
-    let sortresult = addressBookArr.filter((contact) => (contact.firstName()).compareTo(contact.firstName()))
-            .forEach(contact => console.log(contact.firstName()+" "+contact.lastName()));
-    console.log(sortresult);        
- }
+sortByName = () => {
+     addressBookArr.sort(function (contact1, contact2) {
+      let a = contact1.firstName.toUpperCase();
+      let b = contact2.firstName.toUpperCase();
+      return a == b ? 0 : a > b ? 1 : -1;
+    });
+    console.log(addressBookArr.toString());
+  };
+// let sortrByName =() =>{
+//     let sortresult = addressBookArr.filter((contact) => (contact.firstName()).compareTo(contact.firstName()))
+//             .forEach(contact => console.log(contact.firstName()+" "+contact.lastName()));
+//     console.log(sortresult);        
+//  }
 let choice = 0;
 do {
     console.log("Choose\n1. View Contacts\n2. Add Contact\n3. Edit Contact By name\n4. Delete Contact\n5. Search Contacts By City\n6. Search Contacts By State\n7. Count Contacts\n8.View Contact By State\n9.Serach Contacts By City Or State\n10.Sort By Names\n11. Exit");
@@ -189,7 +197,7 @@ do {
         break;
     case "9":searchByCityState();
         break;    
-    case "10": sortrByName();
+    case "10": sortByName();
         break;    
     case "11":
         break;    
