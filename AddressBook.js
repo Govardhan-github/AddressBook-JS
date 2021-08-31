@@ -151,9 +151,20 @@ let viewByState = () => {
     let stateresult= addressBookArr.filter(contact => contact.state == searchState);
     console.log("The persons Are :" +stateresult);
 }
+let searchByCityState = (item) => {
+    let contactsByItemArr = new Array();
+    let itemName = prompt("Enter the " + item + " name ");
+    if (item == "City")
+        contactsByItemArr = addressBookArr.filter(contact => contact.city == itemName);
+    else if (item == "State")
+        contactsByItemArr = addressBookArr.filter(contact => contact.state == itemName);
+    console.log("Number of contacts " + countContact(contactsByItemArr));
+    contactsByItemArr.forEach(contact => console.log(contact.toString()))
+
+}
 let choice = 0;
 do {
-    console.log("Choose\n1. View Contacts\n2. Add Contact\n3. Edit Contact By name\n4. Delete Contact\n5. Search Contacts By City\n6. Search Contacts By State\n7. Count Contacts\n8.View Contact By State\n9. Exit");
+    console.log("Choose\n1. View Contacts\n2. Add Contact\n3. Edit Contact By name\n4. Delete Contact\n5. Search Contacts By City\n6. Search Contacts By State\n7. Count Contacts\n8.View Contact By State\n9.Serach Contacts By City Or State\n10. Exit");
     choice = prompt("Enter Your Choice ");
     switch (choice) {
     case "1": viewContacts();
@@ -172,9 +183,11 @@ do {
         break;
     case "8" : viewByState();
         break;
-    case "9":
+    case "9":searchByCityState();
+        break;    
+    case "10":
         break;    
     default: console.log("Invalid Choice !!");
     }
 
-} while (choice != 9)
+} while (choice != 10)
