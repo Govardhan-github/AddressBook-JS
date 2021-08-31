@@ -91,11 +91,15 @@ try{
 }
 return contactDetails;
 };
-let countContacts = () => {
-    addressBookArr.reduce((total, contactDetails) => total + 1, 0);
-}
 
+countContact = () => {
+    let numberOfContact = addressBookArr
+      .map((contact) => contact)
+      .reduce((numberOfContact) => numberOfContact + 1, 0);
+    console.log("\nNumber of contacts are : " + numberOfContact + " \n");
+  };
 let viewContacts = () => {
+    console.log("Number of contacts in this addressbook : " + countContact());
     addressBookArr.forEach(contact => console.log(contact.toString()));
 }
 let addContact = (contact) => {
@@ -105,7 +109,7 @@ let addContact = (contact) => {
         console.log("Contact Added Successfully!!");
     }
     else
-        console.log("Could not add contact as Name already exists!!");
+        console.log("Could not add contact as Name already exists!!");       
 }       
 let editContact = () => {
     let frstName = prompt("Enter First Name : ");
@@ -134,16 +138,22 @@ let deleteContact = () => {
 }
 let searchByCity = () => {
     let searchCity = prompt("Enter the city name ");
-    return addressBookArr.filter(contact => contact.city == searchCity);
+    let cityresult = addressBookArr.filter(contact => contact.city == searchCity);
+    console.log("The persons Are :" +cityresult);
 }
-
 let searchByState = () => {
     let searchState = prompt("Enter the state name ");
-    return addressBookArr.filter(contact => contact.state == searchState);
+    let stateresult= addressBookArr.filter(contact => contact.state == searchState);
+    console.log("The persons Are :" +stateresult);
+}
+let viewByState = () => {
+    let searchState = prompt("Enter the state name ");
+    let stateresult= addressBookArr.filter(contact => contact.state == searchState);
+    console.log("The persons Are :" +stateresult);
 }
 let choice = 0;
 do {
-    console.log("Choose\n1. View Contacts\n2. Add Contact\n3. Edit Contact By name\n4. Delete Contact\n5. Search Contacts By City\n6. Search Contacts By State\n7. Exit");
+    console.log("Choose\n1. View Contacts\n2. Add Contact\n3. Edit Contact By name\n4. Delete Contact\n5. Search Contacts By City\n6. Search Contacts By State\n7. Count Contacts\n8.View Contact By State\n9. Exit");
     choice = prompt("Enter Your Choice ");
     switch (choice) {
     case "1": viewContacts();
@@ -158,9 +168,13 @@ do {
         break;
     case "6": searchByState();
         break;
-    case "7": 
+    case "7": countContact();
         break;
+    case "8" : viewByState();
+        break;
+    case "9":
+        break;    
     default: console.log("Invalid Choice !!");
     }
 
-} while (choice != 7)
+} while (choice != 9)
